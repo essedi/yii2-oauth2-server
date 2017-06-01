@@ -24,7 +24,7 @@ class DefaultController extends \yii\rest\Controller
     {
         //The first time a user logs in, he doesn't know his client_id, client_secret or ims_id
         //so we are going to default all those params to the user's account.
-        if((!isset($_POST['client_id']) || !$_POST['client_id']) && User::findByEmail($_POST['username']))
+        if($_POST['grant_type'] === 'password' && (!isset($_POST['client_id']) || !$_POST['client_id']) && User::findByEmail($_POST['username']))
         {
             $usr = User::findByEmail($_POST['username']);
             //Get ims id
@@ -42,7 +42,6 @@ class DefaultController extends \yii\rest\Controller
         $server = $this->module->getServer();
         $request = $this->module->getRequest();
         $response = $server->handleTokenRequest($request);
-        //comprobar si client_id testclient
         
         return $response->getParameters();
     }
