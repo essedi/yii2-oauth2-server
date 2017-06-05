@@ -26,7 +26,7 @@ class DefaultController extends \yii\rest\Controller
         $server = $this->module->getServer();
         $request = $this->module->getRequest();
         $response = $server->handleTokenRequest($request);
-        CommonHelper::afterLogin($loginResult);
+        CommonHelper::afterLogin($response);
         return $response->getParameters();
     }
 }
