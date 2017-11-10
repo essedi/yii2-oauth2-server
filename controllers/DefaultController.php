@@ -42,7 +42,7 @@ class DefaultController extends \yii\rest\Controller
 
         //Get the current token and check if it's valid
         $oauthToken = OauthAccessTokens::find()->where(['client_id' => $oauthClient->client_id])
-            ->andWhere(['scope' => 'shops'])->one();
+            ->one();
 
         //check if the oauth token exists
         if(!$oauthToken)
